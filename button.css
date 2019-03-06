@@ -1,0 +1,15 @@
+.fancy {
+  background-color: rgb(255, 92, 114);
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 100;
+  border-width: 0px;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0px 20px 30px rgba(125,147,178,0.3);
+}
+
+.fancy:hover {
+  background-color: rgb(242, 63, 87);
+  box-shadow: 0px 10px 20px rgba(125,147,178,0.5);
+}
