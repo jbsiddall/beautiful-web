@@ -1,0 +1,168 @@
+@mixin font-standard {
+    font-size: 22px;
+}
+
+
+.title {
+    grid-column: 1/3;
+    text-align: center;
+}
+
+.page {
+    display: grid;
+    column-gap: 200px;
+    row-gap: 200px;
+    grid-template-columns: 1fr 1fr;
+    margin: 50px;
+}
+
+
+.fancyButton {
+    @include font-standard;
+    background-color: rgb(255, 92, 114);
+    color: rgb(255, 255, 255);
+    font-weight: 100;
+    border-width: 0px;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 20px 30px rgba(125, 147, 178, 0.3);
+
+    &:hover {
+        background-color: rgb(242, 63, 87);
+        box-shadow: 0px 10px 20px rgba(125, 147, 178, 0.5);
+    }
+}
+
+.pulsingButton {
+
+    @include font-standard;
+    position: relative;
+
+    $green-500: rgb(0, 255, 203);
+    $green-400: rgba(129, 230, 217);
+    $black-500: #313133;
+
+    background-image: linear-gradient($green-400, $green-500);
+    color: $black-500;
+    border-radius: 32px;
+
+    min-width: 300px;
+    min-height: 60px;
+
+    box-shadow: 0px 10px 60px rgba($green-500, 0.64);
+
+    border: none;
+
+    &:not(:hover) {
+        &::before {
+            z-index: -1;
+            content: " ";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border: 6px solid $green-500;
+            width: 30px;
+            height: 30px;
+            animation-name: expanding-ring;
+            animation-duration: 2s;
+            animation-iteration-count: infinite;
+            transform: translate(-50%, -50%);
+            border-radius: 100%;
+        }
+    }
+
+    @keyframes expanding-ring {
+        from {
+            width: 30px;
+            height: 30px;
+            opacity: 0.5;
+        }
+        to {
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+        }
+    }
+}
+
+
+.ringingButton {
+    @include font-standard;
+
+    border: none;
+    background: none;
+    position: relative;
+    padding: 12px;
+
+    animation-name: rotate-right;
+
+    &:before {
+        content: ' ';
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        width: 2px;
+        height: 2px;
+        background-color: black;
+        animation-name: lap-button;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    @keyframes lap-button {
+        0% {
+            left: 0%;
+            top: 0%;
+        }
+        40% {
+            left: 100%;
+            top: 0%;
+        }
+        50% {
+            left: 100%;
+            top: 100%;
+        }
+        90% {
+            left: 0%;
+            top: 100%;
+        }
+        100% {
+            left: 0%;
+            top: 0%;
+        }
+    }
+}
+
+
+.dynamicFancy {
+    @include font-standard;
+
+    background-color: rgb(255, 92, 114);
+    color: rgb(255, 255, 255);
+    font-weight: 100;
+    border-width: 0px;
+    border-radius: 8px;
+    padding: 15px;
+
+    animation-name: moving-shadow;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+
+    &:hover {
+        background-color: rgb(242, 63, 87);
+        box-shadow: 0px 10px 20px rgba(125, 147, 178, 0.5);
+    }
+
+    @keyframes moving-shadow {
+        0% {
+            box-shadow: -5px 20px 30px rgba(125, 147, 178, 0.3);
+        }
+        50% {
+            box-shadow: 5px 20px 30px rgba(125, 147, 178, 0.3);
+        }
+        100% {
+            box-shadow: -5px 20px 30px rgba(125, 147, 178, 0.3);
+        }
+    }
+}
